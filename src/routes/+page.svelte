@@ -94,6 +94,15 @@
     </Notice>
   </Section>
 
+    <Section width="wide">
+      <Notice>
+        
+        From the week ending Friday 5 September onwards, the expected deaths calculation will use 2024 mid-year population estimates rather than population projections. The deaths registrations will use finalised registration data for 2024. These updates may cause minor differences in both these values.
+
+      </Notice>
+    </Section>
+
+
   <Section title="Deaths registered and expected deaths" width="medium">
     <p>
       England and Wales, week ending {data.current.date.toLocaleDateString(

@@ -146,7 +146,7 @@ Data downloaded on ${new Date().toLocaleDateString("en-GB", dateOptions)}
 
 Notes
 1. Figures include deaths of non-residents. 
-2. Registration data for 2023 are based on finalised mortality data. This has been published in our annual death registrations publication. All other figures are provisional. 
+2. Registration data for 2023 and 2024 are based on finalised mortality data. This has been published in our annual death registrations publication. All other figures are provisional. 
 3. The number of deaths registered in a week is affected when bank holidays occur. 
 "4. A statistical model is used to estimate the expected number of deaths. The model accounts for changes in population size, age structure, and trends in mortality over time." 
 "5. Changes to the process by which causes of deaths are scrutinised and certified (Death certification reform), including a statutory medical examiner system, came into force in England and Wales on 9 September 2024."
