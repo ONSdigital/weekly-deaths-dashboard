@@ -94,8 +94,6 @@
     </Notice>
   </Section>
 
-
-
   <Section title="Deaths registered and expected deaths" width="medium">
     <p>
       England and Wales, week ending {data.current.date.toLocaleDateString(
@@ -256,7 +254,7 @@
       </p>
       <p>
         <a
-          href="https://www.ons.gov.uk/peoplepopulationandcommunity/birthsdeathsandmarriages/deaths/methodologies/userguidetomortalitystatisticsjuly2017#expected"
+          href="https://www.ons.gov.uk/peoplepopulationandcommunity/healthandsocialcare/causesofdeath/articles/estimatingexcessdeathsintheukmethodologychanges/february2024"
           target="_top">Learn more about expected deaths</a
         >
       </p>
@@ -285,9 +283,7 @@
         <div class="causes-child">
           <span style="color:#8D2865; font-weight:700"> Due to ⬥</span>
           <p class="ons-u-fs-xxxl" style="margin-bottom:0; color:#8D2865">
-            {Math.abs(data.flu.percent_due_to).toFixed(
-              1
-            )}%
+            {Math.abs(data.flu.percent_due_to).toFixed(1)}%
           </p>
           {Math.abs(data.flu.value_due_to).toLocaleString("en-GB")} deaths
         </div>
@@ -295,8 +291,7 @@
         <div class="causes-child">
           <span style="color:#27A0CC; font-weight:700"> Involving ● </span>
           <p class="ons-u-fs-xxxl" style="margin-bottom:0; color:#27A0CC">
-            {Math.abs(
-              data.flu.percent_involving).toFixed(1)}%
+            {Math.abs(data.flu.percent_involving).toFixed(1)}%
           </p>
           {Math.abs(data.flu.value_involving).toLocaleString("en-GB")} deaths
         </div>
@@ -323,9 +318,7 @@
         <div class="causes-child">
           <span style="color:#8D2865; font-weight:700"> Due to ⬥</span>
           <p class="ons-u-fs-xxxl" style="margin-bottom:0; color:#8D2865">
-            {Math.abs(
-              data.covid.percent_due_to
-            ).toFixed(1)}%
+            {Math.abs(data.covid.percent_due_to).toFixed(1)}%
           </p>
           {Math.abs(data.covid.value_due_to).toLocaleString("en-GB")} deaths
         </div>
@@ -333,9 +326,7 @@
         <div class="causes-child">
           <span style="color:#27A0CC; font-weight:700"> Involving ● </span>
           <p class="ons-u-fs-xxxl" style="margin-bottom:0; color:#27A0CC">
-            {Math.abs(
-              data.covid.percent_involving
-            ).toFixed(1)}%
+            {Math.abs(data.covid.percent_involving).toFixed(1)}%
           </p>
           {Math.abs(data.covid.value_involving).toLocaleString("en-GB")} deaths
         </div>
