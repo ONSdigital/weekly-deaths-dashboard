@@ -1,5 +1,5 @@
 export default function insertHeader(updated, next, latest) {
-    const template = `
+  const template = `
     <div style="font-size:28px; font-weight:400" class="col-wrap margin-left--0">
     
         <div style="line-height:36px"; class="col col--md-36 col--lg-39">
@@ -30,18 +30,22 @@ export default function insertHeader(updated, next, latest) {
     </p>
     <p style="font-size:18px; margin-left:0px"
     class="col  col--md-one-third col--lg-one-third margin-bottom-sm--3 margin-bottom-md--3 margin-top--0 padding-bottom--0 padding-top--0">
-      <span class="font-weight-700">Contact: </span><a style="font-size:18px" href="mailto:health.data@ons.gov.uk"><span class="visuallyhidden">Email </span>Population Health Monitoring Group</a>
+      <span class="font-weight-700">Contact: </span><a style="font-size:18px" href="mailto:health.data@ons.gov.uk"><span class="visuallyhidden">Email </span>Population Life Events Group</a>
 </p>
 </div>`;
 
-    if (window?.parent?.document) {
-        const header = window.parent.document.getElementsByClassName("page-neutral-intro")?.[1];
-        if (header && !window.parent.document.getElementById("dashboard-metadata")) {
-            const div = window.parent.document.createElement('div');
-            div.className = "wrapper";
-            div.id = "dashboard-metadata";
-            div.innerHTML = template;
-            header.appendChild(div);
-        }
+  if (window?.parent?.document) {
+    const header =
+      window.parent.document.getElementsByClassName("page-neutral-intro")?.[1];
+    if (
+      header &&
+      !window.parent.document.getElementById("dashboard-metadata")
+    ) {
+      const div = window.parent.document.createElement("div");
+      div.className = "wrapper";
+      div.id = "dashboard-metadata";
+      div.innerHTML = template;
+      header.appendChild(div);
     }
+  }
 }
