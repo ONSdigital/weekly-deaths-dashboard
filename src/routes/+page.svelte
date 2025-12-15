@@ -233,7 +233,7 @@
       </p>
       <p>
         <a
-          href="https://www.ons.gov.uk/peoplepopulationandcommunity/birthsdeathsandmarriages/deaths/methodologies/userguidetomortalitystatisticsjuly2017#registrations"
+          href="https://www.ons.gov.uk/peoplepopulationandcommunity/birthsdeathsandmarriages/deaths/methodologies/userguidetomortalitystatisticsjuly2017#death-registration-process"
           target="_top">Learn more about the death registration system</a
         >
       </p>
