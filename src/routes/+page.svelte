@@ -141,7 +141,7 @@
           >
             <!-- <p class="ons-u-fs-r"> -->
 
-            <svg width="14" height="16" viewBox="0 0 12 14">
+            <svg width="14" height="16" viewBox="0 0 12 14" aria-hidden="true">
               <path
                 d="M5.5 1.5L5.5 12.5M5.5 1.5L9.5 5.5M5.5 1.5L1.5 5.5"
                 fill="none"
@@ -165,7 +165,7 @@
           >
             <!-- <p class="ons-u-fs-r"> -->
 
-            <svg width="14" height="16" viewBox="0 0 12 14">
+            <svg width="14" height="16" viewBox="0 0 12 14" aria-hidden="true">
               <path
                 d="M5.5 12.5L5.5 1.5M5.5 12.5L1.5 8.5M5.5 12.5L9.5 8.5"
                 fill="none"

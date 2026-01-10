@@ -198,6 +198,15 @@ Week ending,Number involving,Number due to,Percentage involving,Percentage due t
 		.y((d) => y(d[yKey1]));
 
 	$: dataFile = makeDataFile(data);
+
+	// Calculate highest and lowest percentages
+	$: highestInvolving = data.reduce((max, d) => d[yKey1] > max.value ? { value: d[yKey1], date: d[xKey] } : max, { value: -Infinity, date: null });
+	$: lowestInvolving = data.reduce((min, d) => d[yKey1] < min.value ? { value: d[yKey1], date: d[xKey] } : min, { value: Infinity, date: null });
+	$: highestDueTo = data.reduce((max, d) => d[yKey2] > max.value ? { value: d[yKey2], date: d[xKey] } : max, { value: -Infinity, date: null });
+	$: lowestDueTo = data.reduce((min, d) => d[yKey2] < min.value ? { value: d[yKey2], date: d[xKey] } : min, { value: Infinity, date: null });
+
+	// Generate aria-label for screen readers
+	$: ariaLabel = `Line chart showing percentage of deaths due to and involving ${dataTitle} in England and Wales from ${data[0][xKey].toLocaleDateString('en-GB', dateOptions)} to ${data[data.length - 1][xKey].toLocaleDateString('en-GB', dateOptions)}. Two lines are shown: deaths due to ${dataTitle} (shown with square markers) and deaths involving ${dataTitle} (shown with circular markers). In the most recent week ending ${data[data.length - 1][xKey].toLocaleDateString('en-GB', dateOptions)}, ${formatPercent(data[data.length - 1][yKey2])} of deaths were due to ${dataTitle} and ${formatPercent(data[data.length - 1][yKey1])} involved ${dataTitle}. The highest percentage of deaths involving ${dataTitle} was ${formatPercent(highestInvolving.value)} in the week ending ${highestInvolving.date.toLocaleDateString('en-GB', dateOptions)}, and the lowest was ${formatPercent(lowestInvolving.value)} in the week ending ${lowestInvolving.date.toLocaleDateString('en-GB', dateOptions)}. The highest percentage of deaths due to ${dataTitle} was ${formatPercent(highestDueTo.value)} in the week ending ${highestDueTo.date.toLocaleDateString('en-GB', dateOptions)}, and the lowest was ${formatPercent(lowestDueTo.value)} in the week ending ${lowestDueTo.date.toLocaleDateString('en-GB', dateOptions)}. A CSV download of the chart data is available below the chart.`;
 </script>
 
 <div style="padding:10px; margin-top:0px; margin-bottom:10px">
@@ -207,7 +216,7 @@ Week ending,Number involving,Number due to,Percentage involving,Percentage due t
 		style:height="{height}px"
 	>
 		{#if width}
-			<svg {width} {height} class="chart">
+			<svg {width} {height} class="chart" role="img" aria-label={ariaLabel}>
 				<g class="y-ticks">
 					{#each yTicks as tick (tick)}
 						<g class="y-tick" transform="translate(0 {y(tick)})">

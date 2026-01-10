@@ -186,20 +186,27 @@ Week ending,Deaths registered,Expected deaths,Bank holiday week
     //     .y(d => y(d[yKey])))(data);
 
     $: dataFile = makeDataFile(data);
+
+    // Calculate highest and lowest deaths registered
+    $: highestDeaths = data.reduce((max, d) => d[yKey1] > max.value ? { value: d[yKey1], date: d[xKey] } : max, { value: -Infinity, date: null });
+    $: lowestDeaths = data.reduce((min, d) => d[yKey1] < min.value ? { value: d[yKey1], date: d[xKey] } : min, { value: Infinity, date: null });
+
+    // Generate aria-label for screen readers
+    $: ariaLabel = `Bar chart showing deaths registered compared with expected deaths in England and Wales from ${data[0][xKey].toLocaleDateString('en-GB', dateOptions)} to ${data[data.length - 1][xKey].toLocaleDateString('en-GB', dateOptions)}. Deaths registered are shown as bars, with grey bars indicating weeks containing bank holidays. Expected deaths are shown as a stepped line. The most recent week ending ${data[data.length - 1][xKey].toLocaleDateString('en-GB', dateOptions)} had ${data[data.length - 1][yKey1].toLocaleString('en-GB')} deaths registered, compared with ${Math.round(data[data.length - 1][yKey2]).toLocaleString('en-GB')} expected deaths. The highest number of deaths registered was ${highestDeaths.value.toLocaleString('en-GB')} in the week ending ${highestDeaths.date.toLocaleDateString('en-GB', dateOptions)}. The lowest was ${lowestDeaths.value.toLocaleString('en-GB')} in the week ending ${lowestDeaths.date.toLocaleDateString('en-GB', dateOptions)}. A CSV download of the chart data is available below the chart.`;
 </script>
 
 <ul class="legend-container">
     <!-- <li><span class="legend-circle" />Deaths registered</li> -->
-    <li><span class="legend-square" />Deaths registered</li>
+    <li><span class="legend-square" aria-hidden="true" />Deaths registered</li>
     <li>
-        <span class="legend-square-2" />Deaths registered, week containing bank
+        <span class="legend-square-2" aria-hidden="true" />Deaths registered, week containing bank
         holiday
     </li>
-    <li><span class="legend-line" />Expected deaths</li>
+    <li><span class="legend-line" aria-hidden="true" />Expected deaths</li>
 </ul>
 <div class="chart-container" bind:clientWidth={width} style:height="{height}px">
     {#if width}
-        <svg {width} {height} class="chart">
+        <svg {width} {height} class="chart" role="img" aria-label={ariaLabel}>
             <g class="y-ticks">
                 {#each yTicks as tick (tick)}
                     <g class="y-tick" transform="translate(0 {y(tick)})">
