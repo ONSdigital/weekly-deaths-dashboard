@@ -352,7 +352,7 @@
 
   <Section width="medium">
     <Twisty
-      title='What is the difference between deaths "due to" and deaths "involving"?'
+      title="What is the difference between deaths "due to" and deaths "involving"?"
       on:toggle={(e) =>
         toggleEvent(
           e,
