@@ -25,10 +25,26 @@ const manualHolidayDates = [
   
 
 export async function load({ fetch }) {
-    const dates = await (await fetch(datesUrl)).json();
+    let dates = await (await fetch(datesUrl)).json();
 
     const str = await (await fetch(dataUrl)).text();
     const array = csvParse(str, autoType);
+
+    // Handle "auto" dates - extract from data
+    if (dates.current === "auto" && array.length > 0) {
+        const lastRow = array[array.length - 1];
+        // publication_date is already a Date object after autoType parsing
+        const pubDate = new Date(lastRow.publication_date);
+        dates.current = pubDate.toISOString().split('T')[0]; // Format as YYYY-MM-DD
+    }
+
+    if (dates.next === "auto" && dates.current !== "auto") {
+        // Calculate next update (7 days after current)
+        const currentDate = new Date(dates.current);
+        const nextDate = new Date(currentDate);
+        nextDate.setDate(nextDate.getDate() + 7);
+        dates.next = nextDate.toISOString().split('T')[0]; // Format as YYYY-MM-DD
+    }
 
     const json = await (await fetch(holidaysUrl)).json();
    

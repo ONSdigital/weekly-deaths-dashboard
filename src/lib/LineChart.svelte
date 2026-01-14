@@ -378,7 +378,7 @@ Week ending,Number involving,Number due to,Percentage involving,Percentage due t
   download="{filename}-{data[data.length - 1][xKey]
     .toISOString()
     .slice(0, 10)}.csv"
-  small>CSV format ({((dataFile?.blob?.size || 0) / 1000).toFixed(1)}KB)</a
+  >CSV format ({((dataFile?.blob?.size || 0) / 1000).toFixed(1)}KB)</a
 >
 
 <style>
@@ -415,7 +415,7 @@ Week ending,Number involving,Number due to,Percentage involving,Percentage due t
   }
   .tick-line {
     stroke: #ccc;
-    stroke-weight: 1;
+    stroke-width: 1;
   }
   .tick-line-0 {
     stroke: #555;

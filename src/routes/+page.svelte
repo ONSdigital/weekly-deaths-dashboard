@@ -99,7 +99,7 @@
       England and Wales, week ending {data.current.date.toLocaleDateString(
         "en-GB",
         dateOptions
-      )}
+      ).replace(',', '')}
     </p>
   </Section>
   {#if current_bank_holiday || previous_bank_holiday}
@@ -228,7 +228,7 @@
       <p>
         There is usually a delay between the date when a death occurs and the
         date it is registered. The number of days between death occurrence and
-        registration vary, and can be longer in certain cases, such as when a
+        registration varies, and can be greater in certain cases, for example when a
         death is referred to a coroner.
       </p>
       <p>
@@ -273,7 +273,7 @@
       Wales, week ending {data.current.date.toLocaleDateString(
         "en-GB",
         dateOptions
-      )}
+      ).replace(',', '')}
     </p>
   </Section>
 
@@ -352,7 +352,7 @@
 
   <Section width="medium">
     <Twisty
-      title="What is the difference between deaths "due to" and deaths "involving"?"
+      title='What is the difference between deaths "due to" and deaths "involving"?'
       on:toggle={(e) =>
         toggleEvent(
           e,
@@ -375,7 +375,7 @@
   <Divider hr="full" />
   <Section title="Deaths by country" width="medium">
     <p>
-      Week ending {data.current.date.toLocaleDateString("en-GB", dateOptions)}
+      Week ending {data.current.date.toLocaleDateString("en-GB", dateOptions).replace(',', '')}
     </p>
   </Section>
 
@@ -443,7 +443,7 @@
         <!-- {Math.abs(data.current.num_wales).toLocaleString("en-GB")} -->
       </p>
 
-      <p>Includes figures from Scotland and Northern Ireland.</p>
+      <p>This includes figures from Scotland and Northern Ireland.</p>
     </Card>
   </Cards>
 
