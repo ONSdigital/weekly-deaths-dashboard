@@ -1,6 +1,6 @@
 {
     "current": "auto",
     "next": "auto",
-    "notice_enabled": true,
+    "notice_enabled": false,
     "notice_text": "First line\nSecond line if needed"
 }
