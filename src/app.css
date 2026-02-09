@@ -5,6 +5,9 @@ body {
 .tile {
   box-shadow: none !important;
 }
+.ons-card {
+  margin-bottom: 0;
+}
 .ons-collapsible + .ons-collapsible {
   margin-top: 18px;
 }
