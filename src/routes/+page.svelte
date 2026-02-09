@@ -76,6 +76,10 @@
       sectionNumber,
     });
   }
+
+  $: noticeLines = data?.dates?.notice_text
+    ? data.dates.notice_text.split(/\r?\n/)
+    : [];
 </script>
 
 <Embed>
@@ -93,6 +97,16 @@
       </p>
     </Notice>
   </Section>
+
+  {#if data.dates.notice_enabled && noticeLines.length}
+    <Section width="wide">
+      <Notice>
+        {#each noticeLines as line}
+          <p>{line}</p>
+        {/each}
+      </Notice>
+    </Section>
+  {/if}
 
   <Section title="Deaths registered and expected deaths" width="medium">
     <p>
