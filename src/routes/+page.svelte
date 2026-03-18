@@ -62,7 +62,9 @@
     insertHeader(
       dateCurrent.toLocaleDateString("en-GB", dateOptions2),
       dateNext.toLocaleDateString("en-GB", dateOptions2),
-      currentWeek
+      currentWeek,
+      data?.dates?.email,
+      data?.dates?.emailText
     )
   );
 
@@ -193,7 +195,7 @@
               {Math.abs(data.deaths_registered.change).toLocaleString("en-GB")}
             </span>
             ({Math.abs(data.deaths_registered.percent_change).toFixed(1)}%)
-            lower
+            fewer
           </div>
         {/if}
         <!-- </p> -->
