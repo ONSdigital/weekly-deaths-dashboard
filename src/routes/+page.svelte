@@ -52,6 +52,13 @@
     dateOptions2
   );
 
+  const currentWeekNumber = data?.current?.week_num;
+  const currentWeekYear = data?.current?.year;
+  $: currentWeekLabel =
+    typeof currentWeekNumber === "number" && typeof currentWeekYear === "number"
+      ? ` (Week ${currentWeekNumber} of ${currentWeekYear})`
+      : "";
+
   const earliestWeek = data.earliest.date.toLocaleDateString(
     "en-GB",
     dateOptions2
@@ -115,7 +122,7 @@
       England and Wales, week ending {data.current.date.toLocaleDateString(
         "en-GB",
         dateOptions
-      ).replace(',', '')}
+      ).replace(',', '')}{currentWeekLabel}
     </p>
   </Section>
   {#if current_bank_holiday || previous_bank_holiday}
@@ -229,6 +236,10 @@
       </p>
     </Card>
   </Cards>
+
+  <div class="divider-top-space">
+    <Divider hr="full" />
+  </div>
 
   <Section width="medium">
     <Twisty
@@ -366,6 +377,10 @@
     </Card>
   </Cards>
 
+  <div class="divider-top-space">
+    <Divider hr="full" />
+  </div>
+
   <Section width="medium">
     <Twisty
       title='What is the difference between deaths "due to" and deaths "involving"?'
@@ -463,13 +478,20 @@
     </Card>
   </Cards>
 
+  <div class="divider-top-space">
+    <Divider hr="full" />
+  </div>
+
   <Section width="medium">
     The figures for England and Wales exclude non-residents.
   </Section>
-  <Divider hr="full" />
 </Embed>
 
 <style>
+  .divider-top-space {
+    margin-top: 1.5rem;
+  }
+
   .causes-child {
     flex: 50%;
   }

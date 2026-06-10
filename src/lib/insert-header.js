@@ -37,13 +37,33 @@ export default function insertHeader(updated, next, latest, email, emailText) {
 </div>`;
 
   if (window?.parent?.document) {
+    const parentDocument = window.parent.document;
+
+    const title = parentDocument.getElementsByClassName(
+      "page-neutral-intro__title"
+    )?.[0];
+    if (title) {
+      title.textContent = "Deaths registered weekly in England and Wales";
+    }
+
+    if (title && !parentDocument.getElementById("dashboard-prefix")) {
+      const prefix = parentDocument.createElement("div");
+      prefix.id = "dashboard-prefix";
+      prefix.style.fontSize = "22px";
+      prefix.style.fontWeight = "400";
+      prefix.style.color = "#8D8C8E";
+      prefix.style.paddingBottom = "10px";
+      prefix.textContent = "Dashboard";
+      title.parentNode?.insertBefore(prefix, title);
+    }
+
     const header =
-      window.parent.document.getElementsByClassName("page-neutral-intro")?.[1];
+      parentDocument.getElementsByClassName("page-neutral-intro")?.[1];
     if (
       header &&
-      !window.parent.document.getElementById("dashboard-metadata")
+      !parentDocument.getElementById("dashboard-metadata")
     ) {
-      const div = window.parent.document.createElement("div");
+      const div = parentDocument.createElement("div");
       div.className = "wrapper";
       div.id = "dashboard-metadata";
       div.innerHTML = template;
