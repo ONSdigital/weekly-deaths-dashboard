@@ -358,7 +358,7 @@ Week ending,Number involving,Number due to,Percentage involving,Percentage due t
     {/if}
   </div>
 </div>
-<strong>Download chart data</strong><br />
+<strong>Download chart data:</strong><br />
 <a
   href={dataFile?.href}
   on:click={() => {
