@@ -86,6 +86,14 @@
     });
   }
 
+  function formatPercent(value) {
+    const absValue = Math.abs(value);
+    if (absValue > 0 && absValue < 0.1) {
+      return absValue.toFixed(2);
+    }
+    return absValue.toFixed(1);
+  }
+
   $: noticeLines = data?.dates?.notice_text
     ? data.dates.notice_text.split(/\r?\n/)
     : [];
@@ -345,7 +353,7 @@
         <div class="causes-child">
           <span style="color:#8D2865; font-weight:700"> Due to ⬥</span>
           <p class="ons-u-fs-xxxl" style="margin-bottom:0; color:#8D2865">
-            {Math.abs(data.covid.percent_due_to).toFixed(1)}%
+            {formatPercent(data.covid.percent_due_to)}%
           </p>
           {Math.abs(data.covid.value_due_to).toLocaleString("en-GB")} deaths
         </div>
