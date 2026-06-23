@@ -76,7 +76,7 @@
   );
 
   function formatNumber(num) {
-    return Math.abs(num) < 0.05 ? num.toFixed(2) : num.toFixed(1);
+    return num === 0 ? num.toFixed(0) : Math.abs(num) < 0.05 ? num.toFixed(2) : num.toFixed(1);
   }
 
   function toggleEvent(e, label, sectionTitle, sectionNumber) {
