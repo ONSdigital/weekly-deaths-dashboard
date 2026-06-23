@@ -88,7 +88,8 @@
 
   function formatPercent(value) {
     const absValue = Math.abs(value);
-    if (absValue > 0 && absValue < 0.1) {
+    // If it would show as "0.0%" with 1 decimal, use 2 decimals instead
+    if (absValue > 0 && absValue.toFixed(1) === "0.0") {
       return absValue.toFixed(2);
     }
     return absValue.toFixed(1);
