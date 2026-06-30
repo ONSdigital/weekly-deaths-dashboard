@@ -347,7 +347,7 @@ Week ending,Deaths registered,Expected deaths,Bank holiday week
     </svg>
   {/if}
 </div>
-<strong>Download chart data</strong><br />
+<strong>Download chart data: </strong>
 <a
   href={dataFile?.href}
   on:click={() => {

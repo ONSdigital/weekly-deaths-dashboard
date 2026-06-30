@@ -241,9 +241,7 @@
     </Card>
   </Cards>
 
-  <div class="divider-top-space">
-    <Divider hr="full" />
-  </div>
+
 
   <Section width="medium">
     <Twisty
@@ -290,8 +288,12 @@
         >
       </p>
     </Twisty>
-  </Section>
 
+    
+  </Section>
+<div class="divider">
+    <Divider hr="full" />
+  </div>
   <Section width="wide">
     <h3>Trend in the past two years</h3>
     <p>Week ending {earliestWeek} to {currentWeek2}</p>
@@ -381,9 +383,6 @@
     </Card>
   </Cards>
 
-  <div class="divider-top-space">
-    <Divider hr="full" />
-  </div>
 
   <Section width="medium">
     <Twisty
@@ -482,13 +481,15 @@
     </Card>
   </Cards>
 
-  <div class="divider-top-space">
-    <Divider hr="full" />
-  </div>
+
 
   <Section width="medium">
     The figures for England and Wales exclude non-residents.
   </Section>
+
+    <div class="divider">
+    <Divider hr="full" />
+  </div>
 </Embed>
 
 <style>
