@@ -82,6 +82,12 @@ const holidays = [
         percent_change: 100 * ((current.num_england - previous.num_england) / previous.num_england)
     };
 
+    const asmr = {
+        value: current.asmr,
+        change: current.asmr - previous.asmr,
+        percent_change: 100 * ((current.asmr - previous.asmr) / previous.asmr)
+    };
+
     const covid = {
         value_due_to: current.covid_due_to,
         value_involving: current.covid_with,
@@ -139,5 +145,5 @@ const holidays = [
     const current_bank_holiday = current.bank_holiday;
     const previous_bank_holiday = previous.bank_holiday;
 
-    return { array, earliest, current, deaths_registered, expected_comparison, expected_comparison_england, deaths_registered_england, expected_comparison_wales, deaths_registered_wales, flu, covid, flu_covid_max, current_bank_holiday, previous_bank_holiday, dates };
+    return { array, earliest, current, deaths_registered, asmr, expected_comparison, expected_comparison_england, deaths_registered_england, expected_comparison_wales, deaths_registered_wales, flu, covid, flu_covid_max, current_bank_holiday, previous_bank_holiday, dates };
 }

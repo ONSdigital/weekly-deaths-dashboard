@@ -42,6 +42,12 @@
     month: "long",
     day: "numeric",
   };
+
+  const options1dp = {
+    minimumFractionDigits: 1,
+    maximumFractionDigits: 1
+  };
+
   const currentWeek = data.current.date.toLocaleDateString(
     "en-GB",
     dateOptions
@@ -238,6 +244,68 @@
           )} fewer than expected
         {/if}
       </p>
+    </Card>
+     <Card title="Mortality rate (per 100,000)">
+      <p class="ons-u-fs-xxxl">
+        {data.asmr.value.toLocaleString("en-GB", options1dp)}
+      </p>
+      {#if data.asmr.change === 0}
+        <p class="ons-u-fs-r">No change from previous week</p>
+      {:else}
+        <p class="ons-u-fs-r" style="margin-bottom: 0">
+          Change from previous week
+        </p>
+
+        {#if data.asmr.change > 0}
+          <div
+            style="background: #FAD9CB; margin-top:5px;padding:5px; padding-left: 10px;padding-right:13px;display:inline-block"
+            width="100px"
+          >
+            <!-- <p class="ons-u-fs-r"> -->
+
+            <svg width="14" height="16" viewBox="0 0 12 14" aria-hidden="true">
+              <path
+                d="M5.5 1.5L5.5 12.5M5.5 1.5L9.5 5.5M5.5 1.5L1.5 5.5"
+                fill="none"
+                stroke="#AD001F"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+
+            <span style="font-weight:700">
+              {Math.abs(data.asmr.change).toLocaleString("en-GB", options1dp)}
+            </span>
+            ({Math.abs(data.asmr.percent_change).toFixed(1)}%)
+            higher
+          </div>
+        {:else}
+          <div
+            style="background: #D2E2CB; margin-top:5px;padding:5px; padding-left: 10px; padding-right:13px;display:inline-block"
+            width="100px"
+          >
+            <!-- <p class="ons-u-fs-r"> -->
+
+            <svg width="14" height="16" viewBox="0 0 12 14" aria-hidden="true">
+              <path
+                d="M5.5 12.5L5.5 1.5M5.5 12.5L1.5 8.5M5.5 12.5L9.5 8.5"
+                fill="none"
+                stroke="#195000"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+            <span style="font-weight:600">
+              {Math.abs(data.asmr.change).toLocaleString("en-GB", options1dp)}
+            </span>
+            ({Math.abs(data.asmr.percent_change).toFixed(1)}%)
+            fewer
+          </div>
+        {/if}
+        <!-- </p> -->
+      {/if}
     </Card>
   </Cards>
 
