@@ -43,9 +43,9 @@
     day: "numeric",
   };
 
-  const options1dp = {
-    minimumFractionDigits: 1,
-    maximumFractionDigits: 1
+  const options0dp = {
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 0
   };
 
   const currentWeek = data.current.date.toLocaleDateString(
@@ -247,7 +247,7 @@
     </Card>
      <Card title="Mortality rate (per 100,000)">
       <p class="ons-u-fs-xxxl">
-        {data.asmr.value.toLocaleString("en-GB", options1dp)}
+        {data.asmr.value.toLocaleString("en-GB", options0dp)}
       </p>
       {#if data.asmr.change === 0}
         <p class="ons-u-fs-r">No change from previous week</p>
@@ -275,7 +275,7 @@
             </svg>
 
             <span style="font-weight:700">
-              {Math.abs(data.asmr.change).toLocaleString("en-GB", options1dp)}
+              {Math.abs(data.asmr.change).toLocaleString("en-GB", options0dp)}
             </span>
             ({Math.abs(data.asmr.percent_change).toFixed(1)}%)
             higher
@@ -298,7 +298,7 @@
               />
             </svg>
             <span style="font-weight:600">
-              {Math.abs(data.asmr.change).toLocaleString("en-GB", options1dp)}
+              {Math.abs(data.asmr.change).toLocaleString("en-GB", options0dp)}
             </span>
             ({Math.abs(data.asmr.percent_change).toFixed(1)}%)
             fewer
