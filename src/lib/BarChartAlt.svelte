@@ -112,6 +112,47 @@
     return xPos < 10 || width - xPos < 10;
   }
 
+  $: firstDate = data?.[0]?.[xKey];
+  $: lastDate = data?.[data.length - 1]?.[xKey];
+  $: firstMonth = firstDate?.getMonth();
+  $: lastMonth = lastDate?.getMonth();
+  $: firstYearHasAnyLabel = firstDate
+    ? dateChanges.yearLabels.some(
+        ({ year }) => year === firstDate.getFullYear()
+      )
+    : false;
+  $: lastYearHasAnyLabel = lastDate
+    ? dateChanges.yearLabels.some(({ year }) => year === lastDate.getFullYear())
+    : false;
+  $: firstYearHasVisibleLabel = firstDate && x && width
+    ? dateChanges.yearLabels.some(({ date, year }) => {
+        if (year !== firstDate.getFullYear()) {
+          return false;
+        }
+        const xPos = x(date);
+        return xPos !== undefined && !isTooCloseToEdge(xPos, width);
+      })
+    : false;
+  $: lastYearHasVisibleLabel = lastDate && x && width
+    ? dateChanges.yearLabels.some(
+        ({ date, year }) => {
+          if (year !== lastDate.getFullYear()) {
+            return false;
+          }
+          const xPos = x(date);
+          return xPos !== undefined && !isTooCloseToEdge(xPos, width);
+        }
+      )
+    : false;
+  $: shouldShowStartBoundaryYear =
+    !!firstDate &&
+    ((firstMonth === 7 || firstMonth === 8) && !firstYearHasAnyLabel ||
+      firstMonth === 6 && !firstYearHasVisibleLabel);
+  $: shouldShowEndBoundaryYear =
+    !!lastDate &&
+    ((lastMonth === 4 || lastMonth === 5) && !lastYearHasAnyLabel ||
+      lastMonth === 6 && !lastYearHasVisibleLabel);
+
   const dateOptions = {
     year: "numeric",
     month: "long",
@@ -308,6 +349,28 @@ Week ending,Deaths registered,Expected deaths,Bank holiday week
             </text>
           {/if}
         {/each}
+
+        {#if shouldShowStartBoundaryYear}
+          <text
+            class="year-label"
+            x={x.range()[0]}
+            y={height - margin.bottom + (width < 450 ? 23 : 34)}
+            text-anchor="start"
+          >
+            {firstDate.getFullYear()}
+          </text>
+        {/if}
+
+        {#if shouldShowEndBoundaryYear}
+          <text
+            class="year-label"
+            x={x.range()[1]}
+            y={height - margin.bottom + (width < 450 ? 23 : 34)}
+            text-anchor="end"
+          >
+            {lastDate.getFullYear()}
+          </text>
+        {/if}
       </g>
 
       <g class="plot">
