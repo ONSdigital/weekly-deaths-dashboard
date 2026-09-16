@@ -127,7 +127,7 @@
     </Section>
   {/if}
 
-  <Section title="Deaths registered and expected deaths" width="medium">
+  <Section title="Deaths registered, expected and per 100,000 people" width="medium">
     <p>
       England and Wales, week ending {data.current.date.toLocaleDateString(
         "en-GB",
@@ -218,9 +218,37 @@
         <!-- </p> -->
       {/if}
     </Card>
-     <Card title="Mortality rate (per 100,000)">
+  
+    <Card title="Comparison with expected deaths">
       <p class="ons-u-fs-xxxl">
-        {data.asmr.value.toLocaleString("en-GB", options0dp)}
+        {Math.abs(
+          data.expected_comparison.percent_difference.toLocaleString("en-GB")
+        ).toFixed(1)}%
+        {#if data.expected_comparison.percent_difference === 0}
+          difference
+        {:else if data.expected_comparison.percent_difference > 0}
+          higher
+        {:else}
+          lower
+        {/if}
+      </p>
+      <p class="ons-u-fs-r">
+        {#if data.expected_comparison.value === 0}
+          As many as expected
+        {:else if data.expected_comparison.value > 0}
+          {Math.round(Math.abs(data.expected_comparison.value)).toLocaleString(
+            "en-GB"
+          )} more than expected
+        {:else}
+          {Math.round(Math.abs(data.expected_comparison.value)).toLocaleString(
+            "en-GB"
+          )} fewer than expected
+        {/if}
+      </p>
+    </Card>
+      <Card title="Mortality rate (age‑standardised)">
+      <p class="ons-u-fs-xxxl">
+          {data.asmr.value.toLocaleString("en-GB", options0dp)}<span class="mortality-rate-suffix">per 100,000</span>
       </p>
       {#if data.asmr.change === 0}
         <p class="ons-u-fs-r">No change from previous week</p>
@@ -280,33 +308,6 @@
         <!-- </p> -->
       {/if}
     </Card>
-    <Card title="Comparison with expected deaths">
-      <p class="ons-u-fs-xxxl">
-        {Math.abs(
-          data.expected_comparison.percent_difference.toLocaleString("en-GB")
-        ).toFixed(1)}%
-        {#if data.expected_comparison.percent_difference === 0}
-          difference
-        {:else if data.expected_comparison.percent_difference > 0}
-          higher
-        {:else}
-          lower
-        {/if}
-      </p>
-      <p class="ons-u-fs-r">
-        {#if data.expected_comparison.value === 0}
-          As many as expected
-        {:else if data.expected_comparison.value > 0}
-          {Math.round(Math.abs(data.expected_comparison.value)).toLocaleString(
-            "en-GB"
-          )} more than expected
-        {:else}
-          {Math.round(Math.abs(data.expected_comparison.value)).toLocaleString(
-            "en-GB"
-          )} fewer than expected
-        {/if}
-      </p>
-    </Card>
   </Cards>
 
 
@@ -323,7 +324,7 @@
         )}
     >
       <p>
-        There is usually a delay between the date when a death occurs and the
+        By UK law, deaths must be certified and registered. There is usually a delay between the date when a death occurs and the
         date it is registered. The number of days between death occurrence and
         registration varies, and can be greater in certain cases, for example when a
         death is referred to a coroner.
@@ -335,26 +336,7 @@
         >
       </p>
     </Twisty>
-     <Twisty
-      title="What is the mortality rate?"
-      on:toggle={(e) =>
-        toggleEvent(
-          e,
-          "What is the mortality rate?",
-          "Deaths registered and expected deaths",
-          "1"
-        )}
-    >
-      <p>
-        The Age-Standardised Mortality Rate (ASMR) is a measure of the number of deaths in a population, adjusted for age. It allows for comparisons between populations with different age structures.
-      </p>
-      <p>
-        <a
-          href="https://www.ons.gov.uk/peoplepopulationandcommunity/birthsdeathsandmarriages/deaths/methodologies/userguidetomortalitystatisticsjuly2017#death-registration-process"
-          target="_top">Learn more about the death registration system</a
-        >
-      </p>
-    </Twisty>
+
     <Twisty
       title="What are expected deaths?"
       on:toggle={(e) =>
@@ -376,7 +358,26 @@
         >
       </p>
     </Twisty>
-
+     <Twisty
+      title="What is the mortality rate?"
+      on:toggle={(e) =>
+        toggleEvent(
+          e,
+          "What is the mortality rate?",
+          "Deaths registered and expected deaths",
+          "1"
+        )}
+    >
+      <p>
+        The age-standardised mortality rate (ASMR) is a measure of the number of deaths in a population, adjusted for age. It allows for comparisons between populations with different age structures.
+      </p>
+      <p>
+        <a
+          href="https://www.ons.gov.uk/peoplepopulationandcommunity/birthsdeathsandmarriages/deaths/methodologies/userguidetomortalitystatisticsjuly2017#death-registration-process"
+          target="_top">Learn more about mortality rates</a
+        >
+      </p>
+    </Twisty>
     
   </Section>
 <div class="divider">
@@ -591,5 +592,12 @@
   .causes-container {
     display: flex;
     margin-top: 16.8px;
+  }
+
+  .mortality-rate-suffix {
+    display: inline;
+    font-size: 0.5em;
+    line-height: 1;
+    margin-left: 0.35em;
   }
 </style>
